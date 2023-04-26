@@ -1,4 +1,6 @@
 const inputCEP = document.querySelector("#cep");
+const divErro = document.createElement("div");
+divErro.innerHTML = "";
 
 inputCEP.addEventListener("focusout", () => {
   buscaCEP(inputCEP.value);
@@ -14,7 +16,7 @@ async function buscaCEP(cep) {
     autoPreenchimentoEndereco(consultaCEPConvertida);
     return consultaCEPConvertida;
   } catch (erro) {
-    trataErro();
+    trataErro(erro);
   }
 }
 
@@ -23,7 +25,7 @@ function autoPreenchimentoEndereco(consultaCEPConvertida) {
   const estado = document.querySelector("#estado");
   const logradouro = document.querySelector("#endereco");
   const bairro = document.querySelector("#bairro");
-  document.querySelector(".erro").innerHTML = "";
+  divErro.innerHTML = "";
 
   cidade.value = consultaCEPConvertida.localidade;
   estado.value = consultaCEPConvertida.uf;
@@ -31,8 +33,7 @@ function autoPreenchimentoEndereco(consultaCEPConvertida) {
   bairro.value = consultaCEPConvertida.bairro;
 }
 
-function trataErro() {
-  const divErro = document.createElement("div");
+function trataErro(erro) {
   divErro.classList.add("erro");
   document.querySelector("#cep").parentElement.appendChild(divErro);
   document.querySelector(".erro").innerHTML =
