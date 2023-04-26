@@ -43,6 +43,12 @@
     display: flex;
 }
 
+.erro{
+    margin-top: 5px;
+    margin-left: 15px;
+    color: red;
+}
+
 .formulario__botao {
     background: var(--laranja);
     padding: 1em 4em;
